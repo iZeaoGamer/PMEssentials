@@ -108,13 +108,6 @@ class Main extends PluginBase{
         $pt->setAliases(["pt"]);
         $pt->setUsage("/powertool <command>");
         $this->getServer()->getCommandMap()->register("pmessentials", $pt, "powertool");
-
-        $ping = new PluginCommand("ping", $this);
-        $ping->setExecutor(new PingCommand($this, $this->api));
-        $ping->setDescription("Pong!");
-        $ping->setPermission("pmessentials.ping");
-        $ping->setUsage("/ping");
-        $this->getServer()->getCommandMap()->register("pmessentials", $ping, "ping");
 	}
 
 	public function onDisable() : void{
