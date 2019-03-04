@@ -320,6 +320,7 @@ class EssentialsCommandMap {
             $cmd->setExecutor(new TpaCommand());
             $cmd->setDescription("send a tpa request");
             $cmd->setPermission(Main::PERMISSION_PREFIX."tpa");
+            $cmd->setAliases(["tpask"])
             $cmd->setUsage("/tpa <player>");
             $this->register($cmd);
         }catch (\Throwable $e){
@@ -344,7 +345,7 @@ class EssentialsCommandMap {
             $cmd->setExecutor(new TpacceptCommand());
             $cmd->setDescription("accept/deny a teleport request");
             $cmd->setPermission(Main::PERMISSION_PREFIX."tpaccept");
-            $cmd->setAliases(["tpdeny"]);
+            $cmd->setAliases(["tpdeny", "tpyes", "tpno"]);
             $cmd->setUsage("/tpaccept");
             $this->register($cmd);
         }catch (\Throwable $e){
