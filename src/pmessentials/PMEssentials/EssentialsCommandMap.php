@@ -320,7 +320,7 @@ class EssentialsCommandMap {
             $cmd->setExecutor(new TpaCommand());
             $cmd->setDescription("send a tpa request");
             $cmd->setPermission(Main::PERMISSION_PREFIX."tpa");
-            $cmd->setAliases(["tpask"])
+            $cmd->setAliases(["tpask"]);
             $cmd->setUsage("/tpa <player>");
             $this->register($cmd);
         }catch (\Throwable $e){
