@@ -43,8 +43,10 @@ class Main extends PluginBase{
 
     public function onLoad(){
         self::$instance = $this;
+	$this->saveResource("commands.yml");
         $this->api = API::getAPI();
         $this->config = $this->getConfig();
+	 $this->commands = new Config($this->getDataFolder() . "commands.yml");
         $this->moduleManager = new ModuleManager($this);
         $this->userMap = new UserMap();
     }
