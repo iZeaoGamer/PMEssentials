@@ -119,11 +119,11 @@ class EssentialsCommandMap {
         }
 
         try{
-            $cmd = new SimpleCommand("i", $this->plugin);
+            $cmd = new SimpleCommand("item", $this->plugin);
             $cmd->setExecutor(new ICommand());
             $cmd->setDescription("gives you an item");
             $cmd->setPermission(Main::PERMISSION_PREFIX."i");
-            $cmd->setUsage("/i <item>:[meta] [count]");
+            $cmd->setUsage("/item <item>:[meta] [count]");
             $this->register($cmd);
         }catch (\Throwable $e){
             $this->plugin->getServer()->getLogger()->error(TextFormat::colorize("could not register command: i"));
@@ -323,6 +323,7 @@ class EssentialsCommandMap {
             $cmd->setExecutor(new TpaCommand());
             $cmd->setDescription("send a tpa request");
             $cmd->setPermission(Main::PERMISSION_PREFIX."tpa");
+            $cmd->setAliases(["tpask"]);
             $cmd->setUsage("/tpa <player>");
             $this->register($cmd);
         }catch (\Throwable $e){
@@ -347,7 +348,7 @@ class EssentialsCommandMap {
             $cmd->setExecutor(new TpacceptCommand());
             $cmd->setDescription("accept/deny a teleport request");
             $cmd->setPermission(Main::PERMISSION_PREFIX."tpaccept");
-            $cmd->setAliases(["tpdeny"]);
+            $cmd->setAliases(["tpdeny", "tpyes", "tpno"]);
             $cmd->setUsage("/tpaccept");
             $this->register($cmd);
         }catch (\Throwable $e){
