@@ -66,6 +66,7 @@ class EssentialsCommandMap {
 
     private function setDefaultCommands() : void{
         try{
+             if($this->plugin->commands->get("nick.enable") == true){
             $cmd = new SimpleCommand("nick", $this->plugin);
             $cmd->setExecutor(new NickCommand());
             $cmd->setDescription("change your nickname");
@@ -79,7 +80,9 @@ class EssentialsCommandMap {
         }
 
 
+             
         try{
+            if($this->plugin->commands->get("heal.enable") == true){
             $cmd = new SimpleCommand("heal", $this->plugin);
             $cmd->setExecutor(new HealCommand());
             $cmd->setDescription("heal a player");
@@ -90,8 +93,8 @@ class EssentialsCommandMap {
             $this->plugin->getServer()->getLogger()->error(TextFormat::colorize("could not register command: heal"));
             $this->error($e);
         }
-
         try{
+            if($this->plugin->commands->get("feed.enable") == true){
             $cmd = new SimpleCommand("feed", $this->plugin);
             $cmd->setExecutor(new FeedCommand());
             $cmd->setDescription("feed a player");
@@ -102,8 +105,8 @@ class EssentialsCommandMap {
             $this->plugin->getServer()->getLogger()->error(TextFormat::colorize("could not register command: feed"));
             $this->error($e);
         }
-
         try{
+             if($this->plugin->commands->get("gamemode.enable") == true){
             $pmgm = $this->plugin->getServer()->getCommandMap()->getCommand("gamemode");
             $this->plugin->getServer()->getCommandMap()->unregister($pmgm);
 
@@ -120,6 +123,7 @@ class EssentialsCommandMap {
         }
 
         try{
+             if($this->plugin->commands->get("item.enable") == true){
             $cmd = new SimpleCommand("i", $this->plugin);
             $cmd->setExecutor(new ICommand());
             $cmd->setDescription("gives you an item");
@@ -132,6 +136,7 @@ class EssentialsCommandMap {
         }
 
         try{
+             if($this->plugin->commands->get("size.enable") == true){
             $cmd = new SimpleCommand("size", $this->plugin);
             $cmd->setExecutor(new SizeCommand());
             $cmd->setDescription("resize a player");
@@ -145,6 +150,7 @@ class EssentialsCommandMap {
         }
 
         try{
+             if($this->plugin->commands->get("realname.enable") == true){
             $cmd = new SimpleCommand("realname", $this->plugin);
             $cmd->setExecutor(new RealNameCommand());
             $cmd->setDescription("view someone's real name");
@@ -157,6 +163,7 @@ class EssentialsCommandMap {
         }
 
         try{
+             if($this->plugin->commands->get("usage.enable") == true){
             $cmd = new SimpleCommand("usage", $this->plugin);
             $cmd->setExecutor(new UsageCommand());
             $cmd->setDescription("Check a command's usage");
@@ -170,6 +177,7 @@ class EssentialsCommandMap {
         }
 
         try{
+             if($this->plugin->commands->get("powertool.enable") == true){
             $cmd = new SimpleCommand("powertool", $this->plugin);
             $cmd->setExecutor(new PowertoolCommand());
             $cmd->setDescription("Assign a command to an item");
@@ -183,6 +191,7 @@ class EssentialsCommandMap {
         }
 
         try{
+             if($this->plugin->commands->get("ping.enable") == true){
             $cmd = new SimpleCommand("ping", $this->plugin);
             $cmd->setExecutor(new PingCommand());
             $cmd->setDescription("Pong!");
@@ -195,6 +204,7 @@ class EssentialsCommandMap {
         }
 
         try{
+             if($this->plugin->commands->get("fly.enable") == true){
             $cmd = new SimpleCommand("fly", $this->plugin);
             $cmd->setExecutor(new FlyCommand());
             $cmd->setDescription("enable/disable flight");
@@ -207,6 +217,7 @@ class EssentialsCommandMap {
         }
 
         try{
+             if($this->plugin->commands->get("vanish.enable") == true){
             $cmd = new SimpleCommand("vanish", $this->plugin);
             $cmd->setExecutor(new VanishCommand());
             $cmd->setDescription("enable/disable vanish");
@@ -220,6 +231,7 @@ class EssentialsCommandMap {
         }
 
         try{
+             if($this->plugin->commands->get("speed.enable") == true){
             $cmd = new SimpleCommand("speed", $this->plugin);
             $cmd->setExecutor(new SpeedCommand());
             $cmd->setDescription("change your speed");
@@ -233,6 +245,7 @@ class EssentialsCommandMap {
         }
 
         try{
+             if($this->plugin->commands->get("xyz.enable") == true){
             $cmd = new SimpleCommand("xyz", $this->plugin);
             $cmd->setExecutor(new PosCommand());
             $cmd->setDescription("show your coordinates");
@@ -246,6 +259,7 @@ class EssentialsCommandMap {
         }
 
         try{
+             if($this->plugin->commands->get("godmode.enable") == true){
             $cmd = new SimpleCommand("godmode", $this->plugin);
             $cmd->setExecutor(new GodCommand());
             $cmd->setDescription("toggle godmode");
@@ -259,6 +273,7 @@ class EssentialsCommandMap {
         }
 
         try{
+             if($this->plugin->commands->get("nuke.enable") == true){
             $cmd = new SimpleCommand("nuke", $this->plugin);
             $cmd->setExecutor(new NukeCommand());
             $cmd->setDescription("nuke someone");
@@ -271,6 +286,7 @@ class EssentialsCommandMap {
         }
 
         try{
+             if($this->plugin->commands->get("smite.enable") == true){
             $cmd = new SimpleCommand("smite", $this->plugin);
             $cmd->setExecutor(new ThorCommand());
             $cmd->setDescription("Thou hast been smitten");
@@ -284,6 +300,7 @@ class EssentialsCommandMap {
         }
 
         try{
+             if($this->plugin->commands->get("tree.enable") == true){
             $cmd = new SimpleCommand("tree", $this->plugin);
             $cmd->setExecutor(new TreeCommand());
             $cmd->setDescription("Spawn a tree");
@@ -296,6 +313,7 @@ class EssentialsCommandMap {
         }
 
         try{
+             if($this->plugin->commands->get("break.enable") == true){
             $cmd = new SimpleCommand("break", $this->plugin);
             $cmd->setExecutor(new BreakCommand());
             $cmd->setDescription("break the target block");
@@ -308,6 +326,7 @@ class EssentialsCommandMap {
         }
 
         try{
+             if($this->plugin->commands->get("thru.enable") == true){
             $cmd = new SimpleCommand("thru", $this->plugin);
             $cmd->setExecutor(new ThruCommand());
             $cmd->setDescription("go through a block");
@@ -320,6 +339,7 @@ class EssentialsCommandMap {
         }
 
         try{
+             if($this->plugin->commands->get("tpa.enable") == true){
             $cmd = new SimpleCommand("tpa", $this->plugin);
             $cmd->setExecutor(new TpaCommand());
             $cmd->setDescription("send a tpa request");
@@ -332,6 +352,7 @@ class EssentialsCommandMap {
         }
 
         try{
+             if($this->plugin->commands->get("tpahere.enable") == true){
             $cmd = new SimpleCommand("tpahere", $this->plugin);
             $cmd->setExecutor(new TpahereCommand());
             $cmd->setDescription("send a tpahere request");
@@ -344,6 +365,7 @@ class EssentialsCommandMap {
         }
 
         try{
+             if($this->plugin->commands->get("tpaccept.enable") == true){
             $cmd = new SimpleCommand("tpaccept", $this->plugin);
             $cmd->setExecutor(new TpacceptCommand());
             $cmd->setDescription("accept/deny a teleport request");
@@ -357,6 +379,7 @@ class EssentialsCommandMap {
         }
 
         try{
+             if($this->plugin->commands->get("burn.enable") == true){
             $cmd = new SimpleCommand("burn", $this->plugin);
             $cmd->setExecutor(new BurnCommand());
             $cmd->setDescription("set someone on fire");
@@ -369,6 +392,7 @@ class EssentialsCommandMap {
         }
 
         try{
+             if($this->plugin->commands->get("extinguish.enable") == true){
             $cmd = new SimpleCommand("extinguish", $this->plugin);
             $cmd->setExecutor(new ExtinguishCommand());
             $cmd->setDescription("extinguish someone");
@@ -382,6 +406,7 @@ class EssentialsCommandMap {
         }
 
         try{
+             if($this->plugin->commands->get("back.enable") == true){
             $cmd = new SimpleCommand("back", $this->plugin);
             $cmd->setExecutor(new BackCommand());
             $cmd->setDescription("teleport to your previous position");
@@ -394,6 +419,7 @@ class EssentialsCommandMap {
         }
 
         try{
+             if($this->plugin->commands->get("clearinventory.enable") == true){
             $cmd = new SimpleCommand("clearinventory", $this->plugin);
             $cmd->setExecutor(new ClearinventoryCommand());
             $cmd->setDescription("clear someone's inventory");
