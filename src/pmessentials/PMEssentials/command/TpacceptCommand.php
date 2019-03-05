@@ -19,6 +19,7 @@ class TpacceptCommand extends SimpleExecutor {
     public function onCommand(CommandSender $sender, pmCommand $command, string $label, array $args): bool{
         switch ($label) {
             case "tpaccept":
+            case "tpyes":
                 $ev = new TeleportRespondEvent($sender, true);
                 $ev->call();
                 if($ev->isCancelled()){
@@ -34,6 +35,7 @@ class TpacceptCommand extends SimpleExecutor {
                 return true;
                 break;
             case "tpdeny":
+            case "tpno":
                 $ev = new TeleportRespondEvent($sender, true);
                 $ev->call();
                 if($ev->isCancelled()){
