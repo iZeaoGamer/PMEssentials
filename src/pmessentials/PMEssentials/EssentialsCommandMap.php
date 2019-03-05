@@ -1,9 +1,6 @@
 <?php
-
 declare(strict_types=1);
-
 namespace pmessentials\PMEssentials;
-
 use pmessentials\PMEssentials\command\BackCommand;
 use pmessentials\PMEssentials\command\BreakCommand;
 use pmessentials\PMEssentials\command\BurnCommand;
@@ -40,33 +37,26 @@ use pocketmine\command\PluginCommand;
 use pocketmine\command\SimpleCommandMap;
 use pocketmine\entity\Entity;
 use pocketmine\utils\TextFormat;
-
 class EssentialsCommandMap {
-
     private $plugin;
     private static $instance;
     private static $api;
-
     private $commands = [];
-
     public static function getInstance() : EssentialsCommandMap{
         self::$api = API::getAPI();
         if (self::$instance == null)
         {
             self::$instance = new EssentialsCommandMap(self::$api->getPlugin());
         }
-
         return self::$instance;
     }
-
     private function __construct(Main $plugin){
         $this->plugin = $plugin;
         $this->setDefaultCommands();
     }
-
     private function setDefaultCommands() : void{
+        if($this->plugin->commands->get("nick.enable") == true){
         try{
-             if($this->plugin->commands->get("nick.enable") == true){
             $cmd = new SimpleCommand("nick", $this->plugin);
             $cmd->setExecutor(new NickCommand());
             $cmd->setDescription("change your nickname");
@@ -78,11 +68,9 @@ class EssentialsCommandMap {
             $this->plugin->getServer()->getLogger()->error(TextFormat::colorize("could not register command: nick"));
             $this->error($e);
         }
-
-
-             
+           
+            if($this->plugin->commands->get("heal.enable") == true){  
         try{
-            if($this->plugin->commands->get("heal.enable") == true){
             $cmd = new SimpleCommand("heal", $this->plugin);
             $cmd->setExecutor(new HealCommand());
             $cmd->setDescription("heal a player");
@@ -93,8 +81,8 @@ class EssentialsCommandMap {
             $this->plugin->getServer()->getLogger()->error(TextFormat::colorize("could not register command: heal"));
             $this->error($e);
         }
+        if($this->plugin->commands->get("feed.enable") == true){
         try{
-            if($this->plugin->commands->get("feed.enable") == true){
             $cmd = new SimpleCommand("feed", $this->plugin);
             $cmd->setExecutor(new FeedCommand());
             $cmd->setDescription("feed a player");
@@ -105,11 +93,10 @@ class EssentialsCommandMap {
             $this->plugin->getServer()->getLogger()->error(TextFormat::colorize("could not register command: feed"));
             $this->error($e);
         }
+         if($this->plugin->commands->get("gamemode.enable") == true){
         try{
-             if($this->plugin->commands->get("gamemode.enable") == true){
             $pmgm = $this->plugin->getServer()->getCommandMap()->getCommand("gamemode");
             $this->plugin->getServer()->getCommandMap()->unregister($pmgm);
-
             $cmd = new SimpleCommand("gamemode", $this->plugin);
             $cmd->setExecutor(new GameModeCommand());
             $cmd->setDescription("change your gamemode");
@@ -121,9 +108,8 @@ class EssentialsCommandMap {
             $this->plugin->getServer()->getLogger()->error(TextFormat::colorize("could not register command: gamemode"));
             $this->error($e);
         }
-
+        if($this->plugin->commands->get("item.enable") == true){
         try{
-             if($this->plugin->commands->get("item.enable") == true){
             $cmd = new SimpleCommand("i", $this->plugin);
             $cmd->setExecutor(new ICommand());
             $cmd->setDescription("gives you an item");
@@ -134,9 +120,8 @@ class EssentialsCommandMap {
             $this->plugin->getServer()->getLogger()->error(TextFormat::colorize("could not register command: i"));
             $this->error($e);
         }
-
+        if($this->plugin->commands->get("size.enable") == true){
         try{
-             if($this->plugin->commands->get("size.enable") == true){
             $cmd = new SimpleCommand("size", $this->plugin);
             $cmd->setExecutor(new SizeCommand());
             $cmd->setDescription("resize a player");
@@ -148,9 +133,8 @@ class EssentialsCommandMap {
             $this->plugin->getServer()->getLogger()->error(TextFormat::colorize("could not register command: size"));
             $this->error($e);
         }
-
+         if($this->plugin->commands->get("realname.enable") == true){
         try{
-             if($this->plugin->commands->get("realname.enable") == true){
             $cmd = new SimpleCommand("realname", $this->plugin);
             $cmd->setExecutor(new RealNameCommand());
             $cmd->setDescription("view someone's real name");
@@ -161,9 +145,8 @@ class EssentialsCommandMap {
             $this->plugin->getServer()->getLogger()->error(TextFormat::colorize("could not register command: realname"));
             $this->error($e);
         }
-
-        try{
              if($this->plugin->commands->get("usage.enable") == true){
+                 try{
             $cmd = new SimpleCommand("usage", $this->plugin);
             $cmd->setExecutor(new UsageCommand());
             $cmd->setDescription("Check a command's usage");
@@ -175,9 +158,9 @@ class EssentialsCommandMap {
             $this->plugin->getServer()->getLogger()->error(TextFormat::colorize("could not register command: usage"));
             $this->error($e);
         }
-
         try{
              if($this->plugin->commands->get("powertool.enable") == true){
+                 try{
             $cmd = new SimpleCommand("powertool", $this->plugin);
             $cmd->setExecutor(new PowertoolCommand());
             $cmd->setDescription("Assign a command to an item");
@@ -189,9 +172,8 @@ class EssentialsCommandMap {
             $this->plugin->getServer()->getLogger()->error(TextFormat::colorize("could not register command: powertool"));
             $this->error($e);
         }
-
-        try{
              if($this->plugin->commands->get("ping.enable") == true){
+                 try{
             $cmd = new SimpleCommand("ping", $this->plugin);
             $cmd->setExecutor(new PingCommand());
             $cmd->setDescription("Pong!");
@@ -202,9 +184,8 @@ class EssentialsCommandMap {
             $this->plugin->getServer()->getLogger()->error(TextFormat::colorize("could not register command: ping"));
             $this->error($e);
         }
-
-        try{
              if($this->plugin->commands->get("fly.enable") == true){
+                 try{
             $cmd = new SimpleCommand("fly", $this->plugin);
             $cmd->setExecutor(new FlyCommand());
             $cmd->setDescription("enable/disable flight");
@@ -215,9 +196,8 @@ class EssentialsCommandMap {
             $this->plugin->getServer()->getLogger()->error(TextFormat::colorize("could not register command: fly"));
             $this->error($e);
         }
-
-        try{
              if($this->plugin->commands->get("vanish.enable") == true){
+                  try{
             $cmd = new SimpleCommand("vanish", $this->plugin);
             $cmd->setExecutor(new VanishCommand());
             $cmd->setDescription("enable/disable vanish");
@@ -229,9 +209,8 @@ class EssentialsCommandMap {
             $this->plugin->getServer()->getLogger()->error(TextFormat::colorize("could not register command: vanish"));
             $this->error($e);
         }
-
+         if($this->plugin->commands->get("speed.enable") == true){
         try{
-             if($this->plugin->commands->get("speed.enable") == true){
             $cmd = new SimpleCommand("speed", $this->plugin);
             $cmd->setExecutor(new SpeedCommand());
             $cmd->setDescription("change your speed");
@@ -243,9 +222,8 @@ class EssentialsCommandMap {
             $this->plugin->getServer()->getLogger()->error(TextFormat::colorize("could not register command: speed"));
             $this->error($e);
         }
-
-        try{
              if($this->plugin->commands->get("xyz.enable") == true){
+                  try{
             $cmd = new SimpleCommand("xyz", $this->plugin);
             $cmd->setExecutor(new PosCommand());
             $cmd->setDescription("show your coordinates");
@@ -257,9 +235,9 @@ class EssentialsCommandMap {
             $this->plugin->getServer()->getLogger()->error(TextFormat::colorize("could not register command: xyz"));
             $this->error($e);
         }
-
-        try{
+       
              if($this->plugin->commands->get("godmode.enable") == true){
+                  try{
             $cmd = new SimpleCommand("godmode", $this->plugin);
             $cmd->setExecutor(new GodCommand());
             $cmd->setDescription("toggle godmode");
@@ -271,9 +249,8 @@ class EssentialsCommandMap {
             $this->plugin->getServer()->getLogger()->error(TextFormat::colorize("could not register command: godmode"));
             $this->error($e);
         }
-
-        try{
              if($this->plugin->commands->get("nuke.enable") == true){
+                  try{
             $cmd = new SimpleCommand("nuke", $this->plugin);
             $cmd->setExecutor(new NukeCommand());
             $cmd->setDescription("nuke someone");
@@ -284,9 +261,8 @@ class EssentialsCommandMap {
             $this->plugin->getServer()->getLogger()->error(TextFormat::colorize("could not register command: nuke"));
             $this->error($e);
         }
-
+        if($this->plugin->commands->get("smite.enable") == true){
         try{
-             if($this->plugin->commands->get("smite.enable") == true){
             $cmd = new SimpleCommand("smite", $this->plugin);
             $cmd->setExecutor(new ThorCommand());
             $cmd->setDescription("Thou hast been smitten");
@@ -298,9 +274,8 @@ class EssentialsCommandMap {
             $this->plugin->getServer()->getLogger()->error(TextFormat::colorize("could not register command: smite"));
             $this->error($e);
         }
-
-        try{
              if($this->plugin->commands->get("tree.enable") == true){
+                  try{
             $cmd = new SimpleCommand("tree", $this->plugin);
             $cmd->setExecutor(new TreeCommand());
             $cmd->setDescription("Spawn a tree");
@@ -311,9 +286,8 @@ class EssentialsCommandMap {
             $this->plugin->getServer()->getLogger()->error(TextFormat::colorize("could not register command: smite"));
             $this->error($e);
         }
-
-        try{
              if($this->plugin->commands->get("break.enable") == true){
+                 try{
             $cmd = new SimpleCommand("break", $this->plugin);
             $cmd->setExecutor(new BreakCommand());
             $cmd->setDescription("break the target block");
@@ -324,9 +298,8 @@ class EssentialsCommandMap {
             $this->plugin->getServer()->getLogger()->error(TextFormat::colorize("could not register command: break"));
             $this->error($e);
         }
-
-        try{
              if($this->plugin->commands->get("thru.enable") == true){
+                 try{
             $cmd = new SimpleCommand("thru", $this->plugin);
             $cmd->setExecutor(new ThruCommand());
             $cmd->setDescription("go through a block");
@@ -337,9 +310,8 @@ class EssentialsCommandMap {
             $this->plugin->getServer()->getLogger()->error(TextFormat::colorize("could not register command: break"));
             $this->error($e);
         }
-
-        try{
              if($this->plugin->commands->get("tpa.enable") == true){
+                  try{
             $cmd = new SimpleCommand("tpa", $this->plugin);
             $cmd->setExecutor(new TpaCommand());
             $cmd->setDescription("send a tpa request");
@@ -350,9 +322,8 @@ class EssentialsCommandMap {
             $this->plugin->getServer()->getLogger()->error(TextFormat::colorize("could not register command: tpa"));
             $this->error($e);
         }
-
-        try{
              if($this->plugin->commands->get("tpahere.enable") == true){
+                  try{
             $cmd = new SimpleCommand("tpahere", $this->plugin);
             $cmd->setExecutor(new TpahereCommand());
             $cmd->setDescription("send a tpahere request");
@@ -363,9 +334,8 @@ class EssentialsCommandMap {
             $this->plugin->getServer()->getLogger()->error(TextFormat::colorize("could not register command: tpahere"));
             $this->error($e);
         }
-
-        try{
              if($this->plugin->commands->get("tpaccept.enable") == true){
+                  try{
             $cmd = new SimpleCommand("tpaccept", $this->plugin);
             $cmd->setExecutor(new TpacceptCommand());
             $cmd->setDescription("accept/deny a teleport request");
@@ -377,9 +347,8 @@ class EssentialsCommandMap {
             $this->plugin->getServer()->getLogger()->error(TextFormat::colorize("could not register command: tpaccept/tpdeny"));
             $this->error($e);
         }
-
-        try{
              if($this->plugin->commands->get("burn.enable") == true){
+                   try{
             $cmd = new SimpleCommand("burn", $this->plugin);
             $cmd->setExecutor(new BurnCommand());
             $cmd->setDescription("set someone on fire");
@@ -390,9 +359,8 @@ class EssentialsCommandMap {
             $this->plugin->getServer()->getLogger()->error(TextFormat::colorize("could not register command: burn"));
             $this->error($e);
         }
-
-        try{
              if($this->plugin->commands->get("extinguish.enable") == true){
+                 try{
             $cmd = new SimpleCommand("extinguish", $this->plugin);
             $cmd->setExecutor(new ExtinguishCommand());
             $cmd->setDescription("extinguish someone");
@@ -404,9 +372,8 @@ class EssentialsCommandMap {
             $this->plugin->getServer()->getLogger()->error(TextFormat::colorize("could not register command: extinguish"));
             $this->error($e);
         }
-
-        try{
              if($this->plugin->commands->get("back.enable") == true){
+                 try{
             $cmd = new SimpleCommand("back", $this->plugin);
             $cmd->setExecutor(new BackCommand());
             $cmd->setDescription("teleport to your previous position");
@@ -417,9 +384,8 @@ class EssentialsCommandMap {
             $this->plugin->getServer()->getLogger()->error(TextFormat::colorize("could not register command: back"));
             $this->error($e);
         }
-
-        try{
              if($this->plugin->commands->get("clearinventory.enable") == true){
+                 try{
             $cmd = new SimpleCommand("clearinventory", $this->plugin);
             $cmd->setExecutor(new ClearinventoryCommand());
             $cmd->setDescription("clear someone's inventory");
@@ -431,33 +397,54 @@ class EssentialsCommandMap {
             $this->plugin->getServer()->getLogger()->error(TextFormat::colorize("could not register command: clearinventory"));
             $this->error($e);
         }
+             }
+             }
+             }
+             }
+             }
+             }
+             }
+             }
+             }
+             }
+        }
+             }
+             }
+             }
+         }
+             }
+             }
+             }
+             }
+        }
+             }
+         }
+        }
+        }
+         }
+        }
+            }
+        }
     }
-
     public function register(Command $command) : void{
         $this->commands[$command->getName()] = $command;
         $this->plugin->getServer()->getCommandMap()->register("pmessentials", $command, $command->getName());
     }
-
     public function unregister(Command $command) : bool{
         foreach($this->commands as $lbl => $cmd){
             if($cmd === $command){
                 unset($this->commands[$lbl]);
             }
         }
-
         $this->plugin->getServer()->getCommandMap()->unregister($command);
-
         return true;
     }
-
     public function getCommand(string $name) : Command{
         return $this->commands[$name] ?? null;
     }
-
     public function getCommands() : array{
         return $this->commands;
     }
-
     protected function error(\Throwable $e) : void{
         $this->plugin->getServer()->getLogger()->error(TextFormat::colorize("&cError ".$e->getCode().": ".$e->getMessage()." on line ".$e->getLine()." in file ".$e->getFile()));
     }
