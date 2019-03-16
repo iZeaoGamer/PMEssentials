@@ -15,13 +15,10 @@ use pocketmine\utils\TextFormat;
 
 class VanishListener extends ListenerBase {
 
-    public function onJoin(PlayerJoinEvent $e) : void{
+   /* public function onJoin(PlayerJoinEvent $e) : void{
         $p = $e->getPlayer();
         foreach($this->api->getVanishedPlayers() as $vanishedPlayer){
-            $p->hidePlayer($vanishedPlayer);
-        }
-    }
-
+            $p->hidePlayer($vanishedPlayer);*/
     public function onQuit(PlayerQuitEvent $e) : void{
         $p = $e->getPlayer();
         if($this->api->isVanished($p)){
