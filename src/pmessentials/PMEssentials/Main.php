@@ -56,6 +56,8 @@ class Main extends PluginBase{
 	    $this->commandMap = EssentialsCommandMap::getInstance();
 
 	    $this->listeners[UserEventListener::class] = new UserEventListener();
+	    if(!file_exists($this->getDataFolder() . "Players/")){
+		@mkdir($this->getDataFolder() . "Players/");
 	}
 
 
