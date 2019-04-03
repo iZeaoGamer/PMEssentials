@@ -62,9 +62,16 @@ class NickCommand extends SimpleExecutor {
         }
         $player->setDisplayName($ev->getCheckedNick().TextFormat::RESET);
         if($player === $sender){
+            $nick = new Config($this->plugin->getDataFolder() . "Players/" . $sender->getName() . ".yml", Config::YAML);
+            if($nick->get("nick") === "none"){
+                    $nick->set("nick", $ev->getCheckedNick());
+                    $nick->save();
             $sender->sendMessage(TextFormat::colorize("&6Your nick has been set to &c".$ev->getCheckedNick()."&r&6."));
         }else{
             $sender->sendMessage(TextFormat::colorize("&6Set ".$player->getName()."&6's nick to &r&c".$ev->getCheckedNick()."&r&6."));
+                if($nick->get("nick") === "none"){
+                    $nick->set("nick", $ev->getCheckedNick());
+                    $nick->save();
             $player->sendMessage(TextFormat::colorize("&6Your nick has been set to &c".$ev->getCheckedNick()."&r&6."));
         }
         return true;
