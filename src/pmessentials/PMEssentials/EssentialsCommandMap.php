@@ -82,7 +82,7 @@ class EssentialsCommandMap {
             new PowertoolCommand(),
             new PingCommand(),
             new FlyCommand(),
-            new VanishCommand(),
+         //   new VanishCommand(),
             new SpeedCommand(),
             new PosCommand(),
             new GodCommand(),
@@ -182,11 +182,7 @@ class EssentialsCommandMap {
                 $data->normalParameter(0, 0, CustomCommandData::ARG_TYPE_TARGET, "Player", true);
             }
 
-            $cmd = $cmap->getCommand("vanish");
-            if($cmd instanceof SimpleCommand && $cmd->getExecutor() instanceof VanishCommand){
-                $data = $autoCompleteAPI->registerCommandData($cmd);
-                $data->normalParameter(0, 0, CustomCommandData::ARG_TYPE_TARGET, "Player", true);
-            }
+           
 
             $cmd = $cmap->getCommand("speed");
             if($cmd instanceof SimpleCommand && $cmd->getExecutor() instanceof SpeedCommand){
@@ -213,17 +209,7 @@ class EssentialsCommandMap {
                 $data->normalParameter(0, 0, CustomCommandData::ARG_TYPE_TARGET, "Player", true);
             }
 
-            $cmd = $cmap->getCommand("tpa");
-            if($cmd instanceof SimpleCommand && $cmd->getExecutor() instanceof TpaCommand){
-                $data = $autoCompleteAPI->registerCommandData($cmd);
-                $data->normalParameter(0, 0, CustomCommandData::ARG_TYPE_TARGET, "Player");
-            }
-
-            $cmd = $cmap->getCommand("tpahere");
-            if($cmd instanceof SimpleCommand && $cmd->getExecutor() instanceof TpahereCommand){
-                $data = $autoCompleteAPI->registerCommandData($cmd);
-                $data->normalParameter(0, 0, CustomCommandData::ARG_TYPE_TARGET, "Player");
-            }
+           
 
             $cmd = $cmap->getCommand("burn");
             if($cmd instanceof SimpleCommand && $cmd->getExecutor() instanceof BurnCommand){
@@ -249,10 +235,7 @@ class EssentialsCommandMap {
                 $data->normalParameter(0, 0, CustomCommandData::ARG_TYPE_TARGET, "Player", true);
             }
 
-            $cmd = $cmap->getCommand("mute");
-            if($cmd instanceof SimpleCommand && $cmd->getExecutor() instanceof MuteCommand){
-                $data = $autoCompleteAPI->registerCommandData($cmd);
-                $data->normalParameter(0, 0, CustomCommandData::ARG_TYPE_TARGET, "Player", true);
+           
             }
         }
     }
